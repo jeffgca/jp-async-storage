@@ -1,0 +1,16 @@
+{
+  "name": "jp-async-storage",
+  "version": "0.0.1",
+  "description": "A Jetpack module for using IndexedDB, based on the localForage API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "firefox",
+    "jetpack",
+    "addon-sdk"
+  ],
+  "author": "Jeff Griffiths ( @canuckistani )",
+  "license": "ISC"
+}
