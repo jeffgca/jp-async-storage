@@ -28,3 +28,6 @@ In the next few months Add-on SDK extensions will start to be able to support lo
       });
     }):
 
+## Tests
+
+There are tests included that use the addon-sdk's test suite, however it is still a little unclear how we 
