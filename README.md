@@ -1,4 +1,4 @@
-# Async Storage
+# Async Storage for Jetpack
 
 This is a module for Mozilla's Addon-SDK that simplifies using IndexedDB in Firefox extensions, based on the [localForage library](https://github.com/mozilla/localForage).
 
@@ -28,6 +28,29 @@ In the next few months Add-on SDK extensions will start to be able to support lo
       });
     }):
 
+## Supported API
+
+The localForage api is supported:
+
+* setItem
+* getItem
+* removeItem
+* getItems
+* keys
+* key
+* length
+* clear
+
+There are two main differences:
+
+1. Promises are not supported, only callbacks
+2. callback arguments are node-style: the first argument is an error, and the second is the results of the api call.
+
 ## Tests
 
-There are tests included that use the addon-sdk's test suite, however it is still a little unclear how we 
+There are tests included that use the addon-sdk's test suite, however it is still a little unclear how we will support running tests in SDK modules installed from npm. In the meantime running `npm test` will fail unless you copy `async.js` into the lib directory.
+
+## TODO
+
+* look into using Promises
+* consider using a Promise-based initialization method like localForage does with a bit more magic.
