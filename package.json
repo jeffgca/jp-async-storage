@@ -15,6 +15,10 @@
     "jetpack",
     "addon-sdk"
   ],
+  "engines": {
+    "firefox": ">=27.0 <=30.0",
+    "fennec": ">=27.0 <=30.0"
+  },
   "author": "Jeff Griffiths ( @canuckistani )",
   "license": "MIT",
   "devDependencies": {
