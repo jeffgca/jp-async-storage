@@ -1,4 +1,4 @@
-let { AsyncStorage } = require('async-storage');
+let { AsyncStorage } = require('../lib/async-storage');
 let self = require('sdk/self');
 let async = require('async');
 
@@ -193,8 +193,7 @@ exports["test key"] = function(assert, done) {
         });
       });
     });
-  });
-  
+  });  
 };
 
 require("sdk/test").run(exports);
