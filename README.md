@@ -4,14 +4,14 @@ This is a module for Mozilla's Addon-SDK that simplifies using IndexedDB in Fire
 
 ## Installation
 
-For now the best thing to do is probably this:
-
-    cd <extension folder>/lib
-    wget <url-to-async-storage.js>
-
-In the next few months Add-on SDK extensions will start to be able to support loading modules from a node_modules directory, so at that point you will instead want to do:
+The Add-on SDK supports loading modules from a node_modules directory via the jpm tool, so if you're using jpm all you need to do is this:
 
     npm install --save jp-async-storage
+
+If you're using cfx instead ( [upgrade! upgrade!](http://work.erikvold.com/jetpack/2014/08/07/cfx-to-jpm.html) ) you can just to this:
+
+    cd <extension folder>/lib
+    wget https://raw.githubusercontent.com/canuckistani/jp-async-storage/master/lib/async-storage.js
 
 ## Usage
 
@@ -44,7 +44,7 @@ The localForage api is supported:
 There are two main differences:
 
 1. Promises are not supported, only callbacks
-2. callback arguments are node-style: the first argument is an error, and the second is the results of the api call.
+2. callback arguments are node-style: the first argument is an error, and the second is hopefully your data.
 
 ## Tests
 
