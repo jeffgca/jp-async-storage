@@ -48,7 +48,7 @@ There are two main differences:
 
 ## Tests
 
-There are tests included that use the addon-sdk's test suite, however it is still a little unclear how we will support running tests in SDK modules installed from npm. In the meantime running `npm test` will fail unless you copy `async.js` into the lib directory.
+First install `jpm` with `npm install jpm -g`, then run `jpm test -b nightly -v` with Firefox Nightly installed.
 
 ## TODO
 

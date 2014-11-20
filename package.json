@@ -1,9 +1,9 @@
 {
   "name": "async-storage",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Jetpack module for using IndexedDB, based on the localForage API",
   "scripts": {
-    "test": "cfx test --verbose"
+    "test": "jpm test -v"
   },
   "main": "./lib/async-storage",
   "repository" : {
@@ -16,7 +16,7 @@
     "addon-sdk"
   ],
   "engines": {
-    "firefox": ">=27.0 <=30.0",
+    "firefox": ">=27.0",
     "fennec": ">=27.0 <=30.0"
   },
   "author": "Jeff Griffiths ( @canuckistani )",
