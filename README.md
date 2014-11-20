@@ -1,4 +1,4 @@
-# Async Storage for Jetpack
+# Async Storage for Jetpack [![Build Status](https://travis-ci.org/canuckistani/jp-async-storage.png)](https://travis-ci.org/canuckistani/jp-async-storage)
 
 This is a module for Mozilla's Addon-SDK that simplifies using IndexedDB in Firefox extensions, based on the [localForage library](https://github.com/mozilla/localForage).
 
