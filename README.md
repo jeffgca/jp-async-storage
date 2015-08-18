@@ -14,6 +14,7 @@ If you're using cfx instead ( [upgrade! upgrade!](http://work.erikvold.com/jetpa
     wget https://raw.githubusercontent.com/canuckistani/jp-async-storage/master/lib/async-storage.js
 
 ## Usage
+    let { AsyncStorage } = require("async-storage");
 
     let config = {
       name: 'my-database',
