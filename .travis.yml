@@ -11,7 +11,7 @@ before_script:
 - npm install jpm -g
 - npm install mozilla-download -g
 - cd ..
-- mozilla-download --branch nightly -c prerelease --host ftp.mozilla.org firefox
+- mozilla-download --branch nightly --product firefox ./
 - cd $TRAVIS_BUILD_DIR
 
 script:
