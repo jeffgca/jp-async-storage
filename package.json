@@ -1,6 +1,6 @@
 {
   "name": "async-storage",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "A Jetpack module for using IndexedDB, based on the localForage API",
   "scripts": {
     "test": "jpm test -v"
