@@ -7,33 +7,28 @@ let config = {
   version: 1
 };
 
+require("sdk/preferences/service").
+    set("extensions.sdk.console.logLevel", "all");
+
+console.log( "hello world from test async storage" );
+
+var thrower = function(err){throw err};
 exports["test open"] = function(assert, done) {
-  AsyncStorage.open(config, function(err, result) {
-    if (err) throw err;
-    assert.ok(result, "We can open the database.");
-    done();
-  });
+    AsyncStorage.open(config).then(function(result) {
+	assert.ok(result, "We can open the database.");
+	done();
+    }).catch(thrower);
 };
 
 exports["test setItem"] = function(assert, done) {
-  AsyncStorage.open(config, function(e, r) {
-    if (e) throw e;
-    if (r) {
-      let item = {_id: 1, string: "Hello world"};
-      AsyncStorage.setItem('key-'+item._id, item, function() {
-        if (e) throw e;
-        AsyncStorage.getItem('key-'+item._id, function(e, r) {
-          if (e) throw e;
-          assert.ok((r._id === 1), "right result id.");
-          assert.ok(r.string === "Hello world", "right result string property.");
-          AsyncStorage.clear(function(e, r) {
-            if (e) throw e;
-            done();
-          });
-        });
-      });
-    }
-  });
+    let item = {_id: 1, string: "Hello world"};
+    AsyncStorage.setItem('key-'+item._id, item)
+	.then(function(r){
+	    assert.ok((r._id === 1), "right result id.");
+	    assert.ok(r.string === "Hello world", "right result string property.");
+	}).catch(thrower)
+	    .then(AsyncStorage.clear).catch(thrower)
+		.then(done).catch(thrower);
 };
 
 exports["test removeItem"] = function(assert, done) {
@@ -157,43 +152,30 @@ exports["test removeItem"] = function(assert, done) {
 };
 
 exports["test length"] = function(assert, done) {
-  AsyncStorage.open(config, function(e, r) {
-    let fns = [1, 2, 3, 4, 5].map(function(i) {
-      return function(callback) {
-        AsyncStorage.setItem("my-key-"+i, "this is my item "+i, function(e, r) {
-          if (e) throw e;
-          callback(null, true);
-        });
-      };
-    });
-
-    async.series(fns, function(err, result) {
-      AsyncStorage.length(function(err, length) {
-        assert.ok((length === 5), "Length is five");
-        AsyncStorage.clear(function(err, result) {
-          if (err) throw err;
-          done();
-        });
-      });
-    });
-  });
+    let fns = [1, 2, 3, 4, 5]
+	.map(function(i) {
+	    return AsyncStorage.setItem("my-key-"+i, "this is my item "+i);
+	});
+    
+    Promise.All(fns).then(
+	function(){
+	    AsyncStorage.length(function(length) {
+		assert.ok((length === 5), "Length is five");
+		AsyncStorage.clear().then(done).catch(thrower);
+	    }).catch(thrower)}
+    );
 };
 
 exports["test key"] = function(assert, done) {
-  AsyncStorage.open(config, function(e, r) {
     let item = {_id: 'does-it-exist', string: "Hello?"};
     let key = item._id;
-    AsyncStorage.setItem(key, item, function() {
-      AsyncStorage.key(0, function(e, r) {
-        if (e) throw e;
-        assert.ok(r, "probably removed item "+item._id);
-        AsyncStorage.clear(function(e, r) {
-          if (e) throw e;
-          done();
-        });
-      });
-    });
-  });  
-};
-
+    AsyncStorage.setItem(key, item).then(
+	function() {
+	    AsyncStorage.key(0).then(function(r) {
+		assert.ok(r, "probably removed item "+item._id);
+		AsyncStorage.clear().then(done).catch(thrower);
+	    }).catch(thrower);
+	}).catch(thrower);
+}
+	
 require("sdk/test").run(exports);
