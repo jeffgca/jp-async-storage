@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "A Jetpack module for using IndexedDB, based on the localForage API",
   "scripts": {
-    "test": "jpm test -v"
+    "test": "jpm test -v -b $(whereis firefox | cut -d' ' -f2)"
   },
   "main": "./lib/async-storage",
   "repository" : {
