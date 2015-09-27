@@ -84,6 +84,29 @@ exports["test key"] = function(assert, done) {
 	}).catch(thrower);
 }
 
+exports["test key-nonzero"] = function(assert, done) {
+    var thrower = throwerFun(assert);
+    let promises = [1, 2, 3, 4, 5].map(function(i) {
+	return AsyncStorage.setItem("my-key-"+i, "this is my item "+i);
+    });
+
+    Promise.all(promises).then(
+	function(results) {
+	    AsyncStorage.key(2).then(function(key) {
+		var expectedKey = 'my-key-3'
+		var expectedVal = "this is my item 3";
+		assert.equal(key, expectedKey, "tested nonzero key");
+		
+		AsyncStorage.getItem(key).then(function(val){
+		    
+		    assert.equal(val, expectedVal, "tested nonzero val");
+		    AsyncStorage.clear().then(done, thrower);
+		    
+		}).catch(thrower);
+	    }).catch(thrower);
+	});
+}
+
 exports["test setItem"] = function(assert, done) {
     var thrower = throwerFun(assert);
     let item = {_id: 1, string: "Hello world"};
