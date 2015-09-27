@@ -20,15 +20,20 @@ If you're using cfx instead ( [upgrade! upgrade!](http://work.erikvold.com/jetpa
       name: 'my-database',
       version: 1
     };
-    AsyncStorage.open(config, function(e, r) {
-      if (e) throw e;
-      let item = {_id: 1, string: "Hello world"};
-      AsyncStorage.setItem('key-'+item._id, item, function() {
-        if (e) throw e;
-        // if you got this far, you probably saved data!
-      });
-    }):
-
+    AsyncStorage.open(config);
+    let item = {_id: 1, string: "Hello world"};
+    AsyncStorage.setItem(key, string).then(function() {
+	    AsyncStorage.key(0).then(function(result) {
+	        console.log( "saved key is: " +result);
+		AsyncStorage.length().then(function(n) {
+	        console.log( "number of keys: " +n);
+		}).catch(function(err){
+			console.log("error getting length: "+err );
+		});
+	    });
+	});
+    
+    
 ## Supported API
 
 The localForage api is supported:
