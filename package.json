@@ -20,8 +20,5 @@
     "fennec": ">=27.0 <=30.0"
   },
   "author": "Jeff Griffiths ( @canuckistani )",
-  "license": "MPL",
-  "devDependencies": {
-    "async": "^0.9.0"
-  }
+  "license": "MPL"
 }
