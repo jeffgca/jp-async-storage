@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A Jetpack module for using IndexedDB, based on the localForage API",
   "scripts": {
-    "test": "jpm test -v"
+    "test": "jpm test -v -b $(whereis firefox | cut -d' ' -f2)"
   },
   "main": "./lib/async-storage",
   "repository" : {
@@ -20,8 +20,5 @@
     "fennec": ">=27.0 <=30.0"
   },
   "author": "Jeff Griffiths ( @canuckistani )",
-  "license": "MPL",
-  "devDependencies": {
-    "async": "^0.9.0"
-  }
+  "license": "MPL"
 }
